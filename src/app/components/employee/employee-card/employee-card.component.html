@@ -1,0 +1,17 @@
+<div class="card mb-4">
+    <div class="card-img-wrapper" (click)="openModal()">
+      <img [src]=picture class="card-img-top"  alt="{{
+        employee.employeePersonalDetails.firstName
+      }}">
+    
+    </div>
+    <div class="card-body p1">
+        <h4 class="card-title text-center mb-1">
+            <i class="fa fa-building"></i></h4>
+      <h4 class="card-title text-center mb-1">
+        
+        {{employee.employeePersonalDetails.firstName | titlecase}}
+        {{employee.employeePersonalDetails.lastName | titlecase}}  </h4>
+      <p class="card-text text-muted text-center">{{utilsService.getEmployeeDesignation(employee.designation)}} at {{utilsService.getEmployeeLevel(employee.level)}} </p>
+    </div>
+  </div> 

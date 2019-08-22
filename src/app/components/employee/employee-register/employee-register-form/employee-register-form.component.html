@@ -1,0 +1,224 @@
+<div class="tab-panel ">
+  <form [formGroup]="employeeRegisterForm" class="mt-3 col-sm-12" (ngSubmit)="registerEmployee()">
+    <tabset class="member-tabset" [justified]="true">
+      <tab heading="Personal Details" [disabled]="tabPersonalDisabled"  [active]="!tabPersonalDisabled">
+        <div class="form-group">
+
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('firstName').errors &&
+          employeeRegisterForm.get('firstName').touched}" class="form-control" placeholder="First Name"
+            formControlName="firstName" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('firstName').hasError('required') &&
+          employeeRegisterForm.get('firstName').touched">Please Enter your First Name</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('firstName').hasError('pattern') &&
+          employeeRegisterForm.get('firstName').touched">Name contains numbers</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('firstName').hasError('maxlength') &&
+          employeeRegisterForm.get('firstName').touched">Name exceeds limits</div>
+        </div>
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('lastName').errors &&
+          employeeRegisterForm.get('lastName').touched}" class="form-control" placeholder="Last Name"
+            formControlName="lastName" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('lastName').hasError('required') &&
+          employeeRegisterForm.get('lastName').touched">Please Enter your last Name</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('lastName').hasError('pattern') &&
+          employeeRegisterForm.get('lastName').touched">Name contains numbers</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('lastName').hasError('maxlength') &&
+          employeeRegisterForm.get('lastName').touched">Name exceeds limits</div>
+
+        </div>
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('fatherName').errors &&
+          employeeRegisterForm.get('fatherName').touched}" class="form-control" placeholder="Father Name"
+            formControlName="fatherName" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('fatherName').hasError('required') &&
+          employeeRegisterForm.get('fatherName').touched">Please Enter your Father Name</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('fatherName').hasError('pattern') &&
+          employeeRegisterForm.get('fatherName').touched">Name contains numbers</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('fatherName').hasError('maxlength') &&
+          employeeRegisterForm.get('fatherName').touched">Name exceeds limits</div>
+
+
+        </div>
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('cnicNo').errors &&
+          employeeRegisterForm.get('cnicNo').touched}" class="form-control" placeholder="Cnic No"
+            formControlName="cnicNo" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('cnicNo').hasError('required') &&
+          employeeRegisterForm.get('cnicNo').touched">Please Enter your cnic number without spaces</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('cnicNo').hasError('pattern') &&
+          employeeRegisterForm.get('cnicNo').touched">cnic contains only numbers</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('cnicNo').hasError('maxlength') &&
+          employeeRegisterForm.get('cnicNo').touched">cnic exceeds 13 characters limits</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('cnicNo').hasError('minlength') &&
+          employeeRegisterForm.get('cnicNo').touched">cnic must be 13 characters</div>
+        </div>
+        <div class="form-group">
+          <strong> Gender : </strong>
+          <input type="radio" [ngClass]="{'is-invalid': employeeRegisterForm.get('gender').errors &&
+          employeeRegisterForm.get('gender').touched}" class="radio-control" value="true" formControlName="gender" />Male
+          <input type="radio" [ngClass]="{'is-invalid': employeeRegisterForm.get('gender').errors &&
+          employeeRegisterForm.get('gender').touched}" class="radio-control" value="false"
+            formControlName="gender" />Female
+          <div class="invalid-feedback">Please select gender</div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('age').errors &&
+          employeeRegisterForm.get('age').touched}" class="form-control" placeholder="Age" formControlName="age" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('age').hasError('required') &&
+          employeeRegisterForm.get('age').touched">Please Enter your age</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('age').hasError('pattern') &&
+          employeeRegisterForm.get('age').touched">Age contains only numbers</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('age').hasError('min') &&
+          employeeRegisterForm.get('age').touched">Age must be more then 20 years</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('age').hasError('max') &&
+          employeeRegisterForm.get('age').touched">Age must be valid</div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('personaContactNo').errors &&
+          employeeRegisterForm.get('personaContactNo').touched}" class="form-control" placeholder="Personal Number"
+            formControlName="personaContactNo" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('personaContactNo').hasError('required') &&
+          employeeRegisterForm.get('personaContactNo').touched">Please Enter your personal contact number</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('personaContactNo').hasError('pattern') &&
+          employeeRegisterForm.get('personaContactNo').touched">Phone number contains only numbers</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('personaContactNo').hasError('minlength') &&
+          employeeRegisterForm.get('personaContactNo').touched">Phone number must be alteast 7 characters</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('personaContactNo').hasError('maxlength') &&
+          employeeRegisterForm.get('personaContactNo').touched">Enter a valid phone number</div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('education').errors &&
+          employeeRegisterForm.get('education').touched}" class="form-control" placeholder="Education"
+            formControlName="education" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('education').hasError('required') &&
+          employeeRegisterForm.get('education').touched">Please Enter your education</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('education').hasError('maxlength') &&
+          employeeRegisterForm.get('education').touched">Character limit exceeded</div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('currentAddress').errors &&
+          employeeRegisterForm.get('currentAddress').touched}" class="form-control" placeholder="Current Address"
+            formControlName="currentAddress" />
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('currentAddress').hasError('required') &&
+          employeeRegisterForm.get('currentAddress').touched">Please provide current address</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('currentAddress').hasError('maxlength') &&
+          employeeRegisterForm.get('currentAddress').touched">Character limit exceeded</div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('permanentAddress').errors &&
+          employeeRegisterForm.get('permanentAddress').touched}" class="form-control" placeholder="Permanent Address"
+            formControlName="permanentAddress" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('permanentAddress').hasError('required') &&
+          employeeRegisterForm.get('permanentAddress').touched">Please provide permanent address</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('permanentAddress').hasError('maxlength') &&
+          employeeRegisterForm.get('permanentAddress').touched">Character limit exceeded</div>
+        </div>
+        <div class="form-group text-right ">
+          <button (click)="toogletabs()"class="btn btn-success mr-2 fa fa-check" type="button"
+            aria-describedby="Personal Information">
+            Skip
+          </button>
+        </div>
+      </tab>
+      <tab heading="Office Details" [disabled]="tabOfficialDisabled" [active]="!tabOfficialDisabled">
+
+        <div class="form-group">
+
+          <select *ngIf="departments" [ngClass]="{'is-invalid': employeeRegisterForm.get('department').errors &&
+          employeeRegisterForm.get('department').touched}" formControlName="department" class="form-control">
+            <option [value]="0" disabled>Select Department</option>
+            <option *ngFor="let department of departments" [value]="department.departmentId">
+              {{department.name}}</option>
+          </select>
+          <div class="invalid-feedback">Please select Department</div>
+        </div>
+
+        <div class="form-group">
+
+          <select *ngIf="designations" [ngClass]="{'is-invalid': employeeRegisterForm.get('designation').errors &&
+          employeeRegisterForm.get('designation').touched}" formControlName="designation" class="form-control">
+            <option [value]="0" disabled>Select Designation</option>
+            <option *ngFor="let designation of designations" [value]="designation.id">
+              {{designation.name}}</option>
+          </select>
+          <div class="invalid-feedback">Please select Designation</div>
+        </div>
+
+        <div class="form-group">
+
+          <select *ngIf="levels" formControlName="level" [ngClass]="{'is-invalid': employeeRegisterForm.get('level').errors &&
+          employeeRegisterForm.get('level').touched}" class="form-control">
+            <option [value]="0" disabled>Select Grade Level</option>
+            <option *ngFor="let level of levels" [value]="level.id">{{level.name}}</option>
+          </select>
+          <div class="invalid-feedback">Please select Grade/Level</div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('officeEmail').errors &&
+          employeeRegisterForm.get('officeEmail').touched}" class="form-control" placeholder="office Email Id"
+            formControlName="officeEmail" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('officeEmail').hasError('required') &&
+          employeeRegisterForm.get('officeEmail').touched">Please Enter office assigned email</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('officeEmail').hasError('maxlength') &&
+          employeeRegisterForm.get('officeEmail').touched">Character limit exceeded</div>
+
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('officeEmail').hasError('email') &&
+          employeeRegisterForm.get('officeEmail').touched">Not a valid email</div>
+        </div>
+        <div class="form-group">
+          <input type="text" [ngClass]="{'is-invalid': employeeRegisterForm.get('officeContact').errors &&
+          employeeRegisterForm.get('officeContact').touched}" class="form-control" placeholder="office Phone no"
+            formControlName="officeContact" />
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('officeContact').hasError('required') &&
+          employeeRegisterForm.get('officeContact').touched">Please Enter office assigned number</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('officeContact').hasError('pattern') &&
+          employeeRegisterForm.get('officeContact').touched">Phone number contains only numbers</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('officeContact').hasError('minlength') &&
+          employeeRegisterForm.get('officeContact').touched">Phone number must be alteast 7 characters</div>
+
+          <div class="invalid-feedback" *ngIf="employeeRegisterForm.get('officeContact').hasError('maxlength') &&
+          employeeRegisterForm.get('officeContact').touched">Enter a valid phone number</div>
+        </div>
+      <div class="form-group text-right ">
+          <button (click)="toogletabs()"class="btn btn-success mr-2 fa fa-check" type="button"
+          aria-describedby="Personal Information">
+          Go Back
+        </button>
+        <button [disabled]="!employeeRegisterForm.valid" class="btn btn-success mr-2 fa fa-check" type="submit"
+          aria-describedby="Submit Personal Information">
+          Save
+        </button>
+      </div>
+      </tab>
+    </tabset>
+  </form>
+</div>

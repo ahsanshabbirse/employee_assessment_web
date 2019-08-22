@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h4 class="modal-title">Selected Employee: "{{employee.employeePersonalDetails.firstName}} {{employee.employeePersonalDetails.lastName}}"</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="container-fluid">
+    <div class="modal-body text-center">
+        <p>Please Select Following Actions to perform:</p>
+      </div>
+      <div class="row justify-content-center mb-5">
+          <button class="btn btn-info mr-3" (click)="activeModal.close()" [routerLink]="['/employee-details']"> View Details </button>
+          <button class="btn btn-danger mr-3" (click)="activeModal.close()" [routerLink]="['/employee-evaluate']"> Evaluate </button>
+          <button class="btn btn-warning mr-3" (click)="reEvaluateEmployee()" > Re-Evaluate </button>
+          <button class="btn btn-primary mr-3" (click)="activeModal.close()" [routerLink]="['/employee-details']"> Modify </button>
+          <button class="btn btn-primary mr-3" (click)="activeModal.close()" [routerLink]="['/employee-details']"> Login </button>
+          <button class="btn btn-danger mr-3" (click)="activeModal.close()" [routerLink]="['/employee-details']"> Remove </button>
+        </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

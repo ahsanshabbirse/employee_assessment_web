@@ -1,0 +1,217 @@
+<div class="container mt-5">
+    <div class="tab-panel scrollit">
+      <form #employeeEvaluateForm="ngForm" id="editForm" (ngSubmit)="evaluateEmployee()">
+        <tabset class="member-tabset">
+          <tab heading="Core">
+            <div class="divTable blueTable">
+              <div class="divTableHeading">
+                <div class="divTableRow">
+                  <div class="divTableHead">Parameter</div>
+                  <div class="divTableHead">
+                    {{ employee.employeePersonalDetails.firstName }}'s Rating
+                  </div>
+                  <div class="divTableHead">
+                    {{ employee.employeePersonalDetails.firstName }}'s Comment
+                  </div>
+                  <div *ngIf="isManager" class="divTableHead">Manager's Rating</div>
+                  <div class="divTableHead">Manager's Comment</div>
+                </div>
+              </div>
+              <div
+                class="divTableBody"
+                *ngFor="
+                  let criteria of employeeEvaluationList
+                "
+              >
+                <div
+                  class="divTableRow"
+                  *ngIf="criteria.evaluationParameterCategory == 1" 
+                >
+                  <div class="divTableCell">
+                    <input
+                      style="background-color: rgba(255, 255, 255, 0); border: none"
+                      disabled="true"
+                      type="text"
+                      value="{{ criteria.evaluationParameterName }}"
+                    />
+                  </div>
+                  <div *ngIf="!selfModifyAccess" class="divTableCell">{{utilsService.getEmployeeRatting(criteria.selfRatedValue)}}</div>
+                  <div *ngIf="selfModifyAccess && !isManager" class="divTableCell">
+                    <select class="form-control" name="{{ criteria.evaluationParameterName + criteria.selfRatedValue }} Employee" [(ngModel)]="criteria.selfRatedValue">
+                      <option [value]="0" disabled>Self-Rate out of 5</option>
+                      <option [value]="1">Below Average</option>
+                      <option [value]="2">Average</option>
+                      <option [value]="3">Meet Expectations</option>
+                      <option [value]="4">Very Good</option>
+                      <option [value]="5">Exceptional</option>
+                    </select>
+                  </div>                  
+                  <div *ngIf="!selfModifyAccess" class="divTableCell">{{criteria.selfProvidedComments}}</div>
+                  <div *ngIf="selfModifyAccess && !isManager" class="divTableCell">
+                    <textarea class="form-control" rows="3" name="{{ criteria.evaluationParameterName + criteria.selfProvidedComments }} Employee" [(ngModel)]="criteria.selfProvidedComments"></textarea>
+                  </div>
+                  <div *ngIf="!managerModifyAccess && isManager" class="divTableCell">{{utilsService.getEmployeeRatting(criteria.managerRatedValue)}}</div>
+                  <div *ngIf="isManager && managerModifyAccess" class="divTableCell">
+                    <select class="form-control" name="{{ criteria.evaluationParameterName + criteria.managerRatedValue }} Manager" [(ngModel)]="criteria.managerRatedValue">
+                      <option [value]="0" disabled>Manager-Rate out of 5</option>
+                      <option [value]="1">Below Average</option>
+                      <option [value]="2">Average</option>
+                      <option [value]="3">Meet Expectations</option>
+                      <option [value]="4">Very Good</option>
+                      <option [value]="5">Exceptional</option>
+                    </select>
+                  </div>
+                  <div *ngIf="!managerModifyAccess && isSelfEvaluated" class="divTableCell">{{criteria.managerProvidedComments}}</div>
+                  <div *ngIf="managerModifyAccess" class="divTableCell">
+                      <textarea class="form-control" rows="3" name="{{ criteria.evaluationParameterName + criteria.managerProvidedComments }} Manager" [(ngModel)]="criteria.managerProvidedComments"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+          <tab heading="Additional">
+            <div class="divTable blueTable">
+              <div class="divTableHeading">
+                <div class="divTableRow">
+                  <div class="divTableHead">Parameter</div>
+                  <div class="divTableHead">
+                    {{ employee.employeePersonalDetails.firstName }}'s Rating
+                  </div>
+                  <div class="divTableHead">
+                    {{ employee.employeePersonalDetails.firstName }}'s Comment
+                  </div>
+                  <div class="divTableHead">Manager's Rating</div>
+                  <div *ngIf="isManager" class="divTableHead">Manager's Comment</div>
+                </div>
+              </div>
+              <div
+                class="divTableBody"
+                *ngFor="
+                  let criteria of employeeEvaluationList
+                "
+              >
+                <div
+                  class="divTableRow"
+                  *ngIf="criteria.evaluationParameterCategory == 2" 
+                >
+                  <div class="divTableCell">
+                    <input
+                      style="background-color: rgba(255, 255, 255, 0); border: none"
+                      disabled="true"
+                      type="text"
+                      value="{{ criteria.evaluationParameterName }}"
+                    />
+                  </div>
+                  <div *ngIf="!selfModifyAccess" class="divTableCell">{{utilsService.getEmployeeRatting(criteria.selfRatedValue)}}</div>
+                  <div *ngIf="selfModifyAccess && !isManager" class="divTableCell">
+                    <select class="form-control" name="{{ criteria.evaluationParameterName + criteria.selfRatedValue }} Employee" [(ngModel)]="criteria.selfRatedValue">
+                      <option [value]="0" disabled>Self-Rate out of 5</option>
+                      <option [value]="1">Below Average</option>
+                      <option [value]="2">Average</option>
+                      <option [value]="3">Meet Expectations</option>
+                      <option [value]="4">Very Good</option>
+                      <option [value]="5">Exceptional</option>
+                    </select>
+                  </div>                  
+                  <div *ngIf="!selfModifyAccess" class="divTableCell">{{criteria.selfProvidedComments}}</div>
+                  <div *ngIf="selfModifyAccess && !isManager" class="divTableCell">
+                    <textarea class="form-control" rows="3" name="{{ criteria.evaluationParameterName + criteria.selfProvidedComments }} Employee" [(ngModel)]="criteria.selfProvidedComments"></textarea>
+                  </div>
+                  <div *ngIf="!managerModifyAccess && isManager" class="divTableCell">{{utilsService.getEmployeeRatting(criteria.managerRatedValue)}}</div>
+                  <div *ngIf="isManager && managerModifyAccess" class="divTableCell">
+                    <select class="form-control" name="{{ criteria.evaluationParameterName + criteria.managerRatedValue }} Manager" [(ngModel)]="criteria.managerRatedValue">
+                      <option [value]="0" disabled>Manager-Rate out of 5</option>
+                      <option [value]="1">Below Average</option>
+                      <option [value]="2">Average</option>
+                      <option [value]="3">Meet Expectations</option>
+                      <option [value]="4">Very Good</option>
+                      <option [value]="5">Exceptional</option>
+                    </select>
+                  </div>
+                  <div *ngIf="!managerModifyAccess && isSelfEvaluated" class="divTableCell">{{criteria.managerProvidedComments}}</div>
+                  <div *ngIf="managerModifyAccess" class="divTableCell">
+                      <textarea class="form-control" rows="3" name="{{ criteria.evaluationParameterName + criteria.managerProvidedComments }} Manager" [(ngModel)]="criteria.managerProvidedComments"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+          <tab heading="Soft Skills">
+            <div class="divTable blueTable">
+              <div class="divTableHeading">
+                <div class="divTableRow">
+                  <div class="divTableHead">Parameter</div>
+                  <div class="divTableHead">
+                    {{ employee.employeePersonalDetails.firstName }}'s Rating
+                  </div>
+                  <div class="divTableHead">
+                    {{ employee.employeePersonalDetails.firstName }}'s Comment
+                  </div>
+                  <div class="divTableHead">Manager's Rating</div>
+                  <div *ngIf="isManager" class="divTableHead">Manager's Comment</div>
+                </div>
+              </div>
+              <div
+                class="divTableBody"
+                *ngFor="
+                  let criteria of employeeEvaluationList
+                "
+              >
+                <div
+                  class="divTableRow"
+                  *ngIf="criteria.evaluationParameterCategory == 3" 
+                >
+                  <div class="divTableCell">
+                    <input
+                      style="background-color: rgba(255, 255, 255, 0); border: none"
+                      disabled="true"
+                      type="text"
+                      value="{{ criteria.evaluationParameterName }}"
+                    />
+                  </div>
+                  <div *ngIf="!selfModifyAccess" class="divTableCell">{{utilsService.getEmployeeRatting(criteria.selfRatedValue)}}</div>
+                  <div *ngIf="selfModifyAccess && !isManager" class="divTableCell">
+                    <select class="form-control" name="{{ criteria.evaluationParameterName + criteria.selfRatedValue }} Employee" [(ngModel)]="criteria.selfRatedValue">
+                      <option [value]="0" disabled>Self-Rate out of 5</option>
+                      <option [value]="1">Below Average</option>
+                      <option [value]="2">Average</option>
+                      <option [value]="3">Meet Expectations</option>
+                      <option [value]="4">Very Good</option>
+                      <option [value]="5">Exceptional</option>
+                    </select>
+                  </div>                  
+                  <div *ngIf="!selfModifyAccess" class="divTableCell">{{criteria.selfProvidedComments}}</div>
+                  <div *ngIf="selfModifyAccess && !isManager" class="divTableCell">
+                    <textarea class="form-control" rows="3" name="{{ criteria.evaluationParameterName + criteria.selfProvidedComments }} Employee" [(ngModel)]="criteria.selfProvidedComments"></textarea>
+                  </div>
+                  <div *ngIf="!managerModifyAccess && isManager" class="divTableCell">{{utilsService.getEmployeeRatting(criteria.managerRatedValue)}}</div>
+                  <div *ngIf="isManager && managerModifyAccess" class="divTableCell">
+                    <select class="form-control" name="{{ criteria.evaluationParameterName + criteria.managerRatedValue }} Manager" [(ngModel)]="criteria.managerRatedValue">
+                      <option [value]="0" disabled>Manager-Rate out of 5</option>
+                      <option [value]="1">Below Average</option>
+                      <option [value]="2">Average</option>
+                      <option [value]="3">Meet Expectations</option>
+                      <option [value]="4">Very Good</option>
+                      <option [value]="5">Exceptional</option>
+                    </select>
+                  </div>
+                  <div *ngIf="!managerModifyAccess && isSelfEvaluated" class="divTableCell">{{criteria.managerProvidedComments}}</div>
+                  <div *ngIf="managerModifyAccess" class="divTableCell">
+                      <textarea class="form-control" rows="3" name="{{ criteria.evaluationParameterName + criteria.managerProvidedComments }} Manager" [(ngModel)]="criteria.managerProvidedComments"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </form>
+    </div>
+    <div class="row justify-content-center mt-5">
+      <button *ngIf="selfModifyAccess || managerModifyAccess " form="editForm" class="btn btn-primary mr-5" type="submit">
+        Save Current Evaluation
+      </button>
+      <button *ngIf="selfModifyAccess || managerModifyAccess" class="btn btn-danger" type="button" (click)="openConfirmationModal()">
+        Submit Evaluation
+      </button>
+    </div>
+  </div>

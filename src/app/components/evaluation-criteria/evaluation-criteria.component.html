@@ -1,0 +1,137 @@
+<div class="container mt-2">
+  
+  <h2>Evalualtion Criteria</h2>
+  <hr>
+  <div class="row">
+    <div class="col-5" style=" margin: 15px; border: solid 1px #000;">
+        <h3>Add Criteria</h3>
+      <app-evaluation-criteria-register-form (evaluationCriteriaUpdated)="receiveUpdatedEvaluationCriteria($event)" ></app-evaluation-criteria-register-form>
+    </div>
+    <p class="col-1" style="border: transparent 1px #000;">
+    <div class="col-5" style=" margin: 15px; border: solid 1px #000;">
+        <h3>Add Parameter</h3>
+     <app-evalution-criteria-parameter-form></app-evalution-criteria-parameter-form>
+    </div>
+  </div>
+  <hr>
+  <div class="form-group text-left ">
+      <button (click)="openConfirmationModal(modalContent)" class="btn btn-success mr-2 fa fa-check" type="button"
+        aria-describedby="Start Evaluation">
+        {{evaluationButtonText}}
+      </button>
+      {{evaluationMessage}}
+    </div>
+  <hr>
+<div class="mt-5 scrollit" style="border: solid 1px #000; padding: 5px;">
+    
+      <tabset class="member-tabset" [justified]="true">
+        <tab heading="Core">
+      <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Evaluation Category</th>
+          <th scope="col">Evaluation Parameter</th>
+          <th scope="col">Description</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let criteria of evaluationCriteria">
+        <tr *ngIf="criteria.evaluationCategory == 1">
+          <th scope="row">{{ criteria.evaluationCriteriaId }}</th>
+          
+          <td>{{ utilsService.getEvaluationCategory(criteria.evaluationCategory)}}</td>
+          <td>{{ criteria.evaluationParameter.name}}</td>
+          <td>{{ criteria.evaluationParameter.description}}</td>
+          <td><button (click)="openCriteriaModifyModal(criteria)" class="btn btn-success fa fa-check" type="button">
+              Modify
+            </button></td>
+        </tr>
+      </tbody>
+      </table>
+      </tab>
+      <tab heading="Soft Skills">
+          <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Evaluation Category</th>
+              <th scope="col">Evaluation Parameter</th>
+              <th scope="col">Description</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let criteria of evaluationCriteria">
+              <tr *ngIf="criteria.evaluationCategory == 2">
+                <th scope="row">{{ criteria.evaluationCriteriaId }}</th>
+                
+                <td>{{ utilsService.getEvaluationCategory(criteria.evaluationCategory)}}</td>
+                <td>{{ criteria.evaluationParameter.name}}</td>
+                <td>{{ criteria.evaluationParameter.description}}</td>
+                <td><button (click)="openCriteriaModifyModal(criteria)" class="btn btn-success fa fa-check" type="button">
+                  Modify
+                </button></td>
+              </tr>
+            </tbody>
+          </table>
+          </tab>
+          <tab heading="Additionals">
+              <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Evaluation Category</th>
+                  <th scope="col">Evaluation Parameter</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let criteria of evaluationCriteria">
+                  <tr *ngIf="criteria.evaluationCategory == 3">
+                    <th scope="row">{{ criteria.evaluationCriteriaId }}</th>
+                    
+                    <td>{{ utilsService.getEvaluationCategory(criteria.evaluationCategory)}}</td>
+                    <td>{{ criteria.evaluationParameter.name}}</td>
+                    <td>{{ criteria.evaluationParameter.description}}</td>
+                    <td><button (click)="openCriteriaModifyModal(criteria)" class="btn btn-success fa fa-check" type="button">
+                        Modify
+                      </button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-between p-2">
+              <!-- <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+              </ngb-pagination> -->
+              
+              <!-- <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                  <option [ngValue]="2">2 items per page</option>
+                  <option [ngValue]="4">4 items per page</option>
+                  <option [ngValue]="6">6 items per page</option>
+                </select> -->
+              </div>
+              </tab>
+      </tabset>
+      <p>You can Add more <code>Criteria's</code> by filling <code>Criteria</code> From from Above or Add more <code>Parameters</code> as per your requirement </p>
+</div>
+</div>
+
+<ng-template #modalContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirming Performed Action</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross clicked')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="evalutionStatusActive">
+      <code> Do You Really Want to End Employee Evaluation </code>
+    </div>
+    <div *ngIf="!evalutionStatusActive">
+      <code> Do You Really Want to Start Employee Evaluation </code>
+      </div>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close()">No</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('Save')">YES</button>
+  </div>
+</ng-template>

@@ -1,0 +1,18 @@
+<div class="card mb-4">
+  <div class="card-img-wrapper">
+    <img src='../../../../assets/enterprise.png' class="card-img-top" alt="department">
+    <ul class="list-inline member-icons animate text-center">
+      <li class="list-inline-item">
+        <button class="btn btn-dark" [routerLink]="['/employee_detail/',department.departmentId]"  > <i class="fa fa-building"></i> </button>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body p1">
+      <h4 class="card-title text-center mb-1">
+          <i class="fa fa-building"></i></h4>
+    <h4 class="card-title text-center mb-1">
+      
+      {{department.name | titlecase}}  </h4>
+    <p class="card-text text-muted text-center">{{department.createdTimestamp}} </p>
+  </div>
+</div> 

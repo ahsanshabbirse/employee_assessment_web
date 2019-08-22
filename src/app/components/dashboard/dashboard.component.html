@@ -1,0 +1,16 @@
+<div class="container mt-5">
+    <h2><strong>{{department.name | titlecase}}</strong></h2>
+    <h3>Department Managers</h3>
+    <hr>
+    <div class="row mt-2">
+          <div *ngFor="let employee of responseData.data.employeeList" class="col-lg-2 col-md-3 col-sm-6 ">
+            <app-dashboard-card [employee]="employee" ></app-dashboard-card>
+        </div>
+      </div>
+        <div class="mt-5 ">
+            <hr>
+            <h2> Department Performance Graph </h2>
+            <hr>
+     <app-dashboard-chart></app-dashboard-chart>
+    </div>
+  </div>

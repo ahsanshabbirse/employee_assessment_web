@@ -1,0 +1,87 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+        <h1 >{{employeePersonalDetail.firstName | titlecase}}'s Profile</h1>
+
+  </div>
+  <div class="col-sm-8">
+<div class="alert alert-info" *ngIf="editForm.dirty">
+  <strong>
+    Information:
+  </strong>
+    You have made changes. Any unsaved changes will be lost!
+
+</div>
+  </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <img
+        [src]=getSantizeUrl()
+          class="card-img-top img-thumbnail"
+          alt="{{ employeePersonalDetail.firstName }}"
+        />
+        <div class="card-body">
+          <div>
+            <strong>Office Email:</strong>
+            <p>{{sessionBean.employee.officeEmail}}</p>
+          </div>
+          <div>
+            <strong>Office Contact:</strong>
+            <p>{{sessionBean.employee.officeContact}}</p>
+          </div>
+          <div>
+            <strong>Designation:</strong>
+            <p>{{designation}}</p>
+          </div>
+          <div>
+            <strong>Ex Employee:</strong>
+            <p>{{exEmployee}}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-primary w-100">Save Changes </button>
+         
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-panel ">
+        <tabset class="member-tabset ">
+          <tab heading="Edit Profile">
+            
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()" class="scrollit p-1">
+            <h4>First Name</h4>
+            <textarea name="firstName" cols="1" rows="1" class="form-control" [(ngModel)]="employeePersonalDetail.firstName"></textarea>
+            <h4>Last Name</h4>
+            <textarea name="lastName" rows="1" class="form-control" [(ngModel)]="employeePersonalDetail.lastName"></textarea>
+            <h4>Father Name</h4>
+            <textarea name="fatherName" cols="1" rows="1" class="form-control" [(ngModel)]="employeePersonalDetail.fatherName"></textarea>
+            <h4>Cnic No</h4>
+            <textarea name="cnicNo" rows="1" class="form-control" [(ngModel)]="employeePersonalDetail.cnicNo"></textarea>
+            <h4>Gender</h4>
+            <input name="gender" type="radio" [(ngModel)]="employeePersonalDetail.gender" class="radio-control" [value]="true"  />Male
+            <input name="gender" type="radio" [(ngModel)]="employeePersonalDetail.gender" class="radio-control" [value]="false" />Female
+
+           
+            <h4>Age</h4>
+            <textarea name="age" rows="1" class="form-control" [(ngModel)]="employeePersonalDetail.age"></textarea>
+            <h4>Personal Contact</h4>
+            <textarea name="personalContact" cols="1" rows="1" class="form-control" [(ngModel)]="employeePersonalDetail.personalContactNo"></textarea>
+            <h4>Education</h4>
+            <textarea name="education" rows="1" class="form-control" [(ngModel)]="employeePersonalDetail.education"></textarea>
+            <h4>Current Address</h4>
+            <textarea name="currentAddress" cols="1" rows="1" class="form-control" [(ngModel)]="employeePersonalDetail.currentAddress"></textarea>
+            <h4>Permanent Address</h4>
+            <textarea name="permanentAddress" rows="1" class="form-control" [(ngModel)]="employeePersonalDetail.permanentAddress"></textarea>
+         </form>
+          </tab>
+          
+          <tab heading="Upload Photo">
+          <app-photo-editor></app-photo-editor>
+          </tab>
+         
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

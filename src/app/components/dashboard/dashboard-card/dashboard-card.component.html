@@ -1,0 +1,19 @@
+<div class="card mt-5">
+    <div class="card-img-wrapper">
+      <img [src]=picture class="card-img-top" alt="my photo">
+      <ul class="list-inline member-icons animate text-center">
+        <li class="list-inline-item">
+            <button class="btn btn-dark" (click)="setEmployeeDetails()" [routerLink]="['/employee-details']"> <i class="fa fa-building"></i> </button>
+          <button class="btn btn-light"  data-toggle="tooltip"  title="Evaluate"> <i class="fa fa-bar-chart"></i></button>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body p1">
+      <h6 class="card-title text-center mb-1">
+        <i class="fa fa-user"></i>
+        {{employee.employeePersonalDetails.firstName | titlecase}} {{employee.employeePersonalDetails.lastName | titlecase}}
+      </h6>
+      <p class="card-text text-muted text-center"> Designation: {{getEmployeeDesignation(employee.designation)}} </p>
+      <p class="card-text text-muted text-center"> Level: {{getEmployeeLevel(employee.level)}} </p>
+    </div>
+  </div>

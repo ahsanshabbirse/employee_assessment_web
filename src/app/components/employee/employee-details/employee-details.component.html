@@ -1,0 +1,148 @@
+<div class="container mt-4">
+  <div class="row ml-1">
+    <h1>
+      {{ employee.employeePersonalDetails.firstName | titlecase }}'s
+      Profile
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img
+        [src]=picture
+          class="card-img-top img-thumbnail"
+          alt="{{
+            employee.employeePersonalDetails.firstName
+          }}"
+        />
+        <div class="card-body mt-4">
+            <div>
+              <strong>Office Email:</strong>
+              <p>{{employee.officeEmail}}</p>
+            </div>
+            <div>
+              <strong>Office Contact:</strong>
+              <p>{{employee.officeContact}}</p>
+            </div>
+            <div>
+              <strong>Designation:</strong>
+              <p>{{designation}}</p>
+            </div>
+            <div>
+              <strong>Employee status:</strong>
+              <p>{{exEmployee}}</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+   
+    <div class="col-sm-4">
+        <div class="tab-panel ">
+            <tabset class="member-tabset" [justified]="true">
+              <tab heading="Personal Details" class="scrollit">
+         
+                  <h5>First Name:</h5>
+                  
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.firstName |titlecase }} </span>
+                    <hr>
+                  <h5>Last Name:
+                  
+                  </h5>
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.lastName |titlecase }} </span>
+                      <hr>
+                      <h5>Father Name:
+                  
+                  </h5>
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.fatherName |titlecase }} </span>
+                      <hr>
+                      <h5>Cnic No:
+                  
+
+                  </h5>
+
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.cnicNo |titlecase }} </span>
+                      <hr>
+                      <h5>Gender:
+                  
+                  </h5>
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.gender }} </span>
+                      <hr>
+                      <h5>Age:
+                  
+                  </h5>
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.age }} </span>
+                      <hr>
+                      <h5>Personal Contact:
+                  
+                  </h5>
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.personalContactNo  }} </span>
+                      <hr>
+                      <h5>Education:
+                  </h5>
+                  
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.education |titlecase }} </span>
+                      <hr>
+                      <h5>Current Address:
+                  
+                  </h5>
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.currentAddress |titlecase }} </span>
+                      <hr>
+                      <h5>Permanent Address:
+                  
+                  </h5>
+                      <span class="focus" style="color: crimson">    {{ employee.employeePersonalDetails.permanentAddress |titlecase }} </span>
+                  </tab>
+      </tabset>
+      </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="tab-panel ">
+            <tabset class="member-tabset" [justified]="true">
+              <tab heading="Office Details" class="scrollit">
+         
+                  <h5>Designation:</h5>
+                  
+                      <span class="focus" style="color: crimson">    {{ designation|titlecase }} </span>
+                    <hr>
+                    <h5>Level:
+                  
+                    </h5>
+                        <span class="focus" style="color: crimson">    {{ employee.level}} </span>
+                        <hr>
+                  <h5>Office Contact No:
+                  
+                  </h5>
+                      <span class="focus" style="color: crimson">    {{ employee.officeContact}} </span>
+                      <hr>
+                      <h5>Office Email:
+                  
+                  </h5>
+                      <span class="focus" style="color: crimson">    {{ employee.officeEmail}} </span>
+                      <hr>
+                      <h5>Employee Status:
+                  
+
+                  </h5>
+
+                      <span class="focus" style="color: crimson">    {{ exEmployee |titlecase }} </span>
+                      <hr>
+                    
+                     
+                   
+                  </tab>
+      </tabset>
+      
+      </div>
+     
+      
+    </div>
+    <div class="alert alert-info m-2 col-sm-12" *ngIf="employee.evaluationStatus != 0 && employee.evaluationStatus != 5" >
+      <strong>
+        Information:
+      </strong>
+        Evaluation is currently <span class="focus" style="color: crimson">in process </span>visit your <span class="focus" style="color: crimson">manager </span> for further <span class="focus" style="color: crimson">details</span>.
+    </div>
+  </div>
+  
+</div>
